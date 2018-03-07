@@ -14,10 +14,9 @@
 </script> 
      
    <script type="text/javascript">
-        if (window.location.protocol == "http:") {
-        var restOfUrl = window.location.href.substr(5);
-        window.location = "https:" + restOfUrl;
-    }
+  if(window.location.protocol != 'https:') {
+  location.href = location.href.replace("http://", "https://");
+}
    
 
      window.addEventListener("load", getApi)
