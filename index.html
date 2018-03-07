@@ -9,14 +9,22 @@
    <a class="twitter-timeline" data-width="220" data-height="200" data-theme="light" data-link-color="#2B7BB9" href="https://twitter.com/ErikAPITEST?ref_src=twsrc%5Etfw">Tweets by ErikAPITEST</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                
    <a href="https://twitter.com/intent/tweet?button_hashtag=search&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #search</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-   
+   <script>
+    if (window.location.protocol == "http:") {
+      console.log("You are not connected with a secure connection.")
+      console.log("Reloading the page to a Secure Connection...")
+      window.location = document.URL.replace("http://", "https://");
+    }
+
+    if (window.location.protocol == "https:") {
+      console.log("You are connected with a secure connection.")
+    }
+</script>
    
 </script> 
      
    <script type="text/javascript">
-  if(window.location.protocol != 'https:') {
-  location.href = location.href.replace("http://", "https://");
-}
+ 
    
 
      window.addEventListener("load", getApi)
