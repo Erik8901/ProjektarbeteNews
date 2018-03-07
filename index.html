@@ -1,24 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ProjektArbete Nyheter</title>
-    <link rel="stylesheet" type="text/css" href="./styles/styles.css"> 
-    <script src="./js/functions.js"></script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-<script type="text/javascript">
-      
-</script>
-</head>
+   <title>Api test</title>
+   <link rel="stylesheet" type="text/css" href="styles.css">
+   
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <a class="twitter-timeline" data-width="220" data-height="200" data-theme="light" data-link-color="#2B7BB9" href="https://twitter.com/ErikAPITEST?ref_src=twsrc%5Etfw">Tweets by ErikAPITEST</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+               
+   <a href="https://twitter.com/intent/tweet?button_hashtag=search&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #search</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   
+   
+</script> 
+     
+   <script type="text/javascript">
+        if (window.location.protocol == "http:") {
+        var restOfUrl = window.location.href.substr(5);
+        window.location = "https:" + restOfUrl;
+    }
+   
 
-    
+     window.addEventListener("load", getApi)
+       
+       
+       function getApi() {
+       
+       let btn1 = document.getElementById("btn1");
+       let div = document.getElementById("div");
+       let datum = new Date();
+       let date = datum.getDate();
+       let month = datum.getMonth() + 1;
+       var h = datum.getHours();
+       var m = datum.getMinutes();
+       var s = datum.getSeconds();
+       let link = "http://numbersapi.com/"+month+"/"+date+"/date?json";
+       let timeDiv = document.getElementById("time");
+       let timeLink = "http://api.timezonedb.com/v2/get-time-zone?key=982P7H46YD1D&format=json&by=zone&zone=Europe/Stockholm"
+     /*  
+            m = checkTime(m);
+            s = checkTime(s);
+            timeDiv.innerHTML =
+            h + ":" + m + ":" + s;
+            var t = setTimeout(getApis, 500);
+        
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        } 
+   */    
+       
+       
+            fetch(link)
+           .then(function(response) {
+              // console.log(response);
+               return response.json();
+            })
+           .then(function(obj) {
+              // console.log(obj.year);
+               //console.log(obj.text);
+               let year = JSON.stringify(obj.year);
+               let divYear = document.createElement("div");
+               let txt = JSON.stringify(obj.text);
+               let divTxt = document.createElement("div");
+               divYear.innerHTML = year;
+               divYear.id = "divYear";
+               divTxt.innerHTML = txt;
+               divTxt.id = "divTxt";
+               div.appendChild(divYear);
+               div.appendChild(divTxt);
+            })
+       
+                      
+               
+
+               
+           
+          
+           
+           
+        
+    };
+         
+   </script>
+</head>
 <body>
-    
-    <h1>NEWS SITE</h1>
-    <h2>Twitter</h2>
-    <button id="btn1">Get Tweets!</button>
-    <div id="twitterDiv"></div>
-    
-    
+   <button id="btn1">get history/time</button>
+   <div id="div"></div>
+   <div id="time"></div>
 </body>
+   
+   
 </html>
